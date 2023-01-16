@@ -1,5 +1,9 @@
+import { WebViewCommand } from '@rnweb-template/types';
+
 const appScheme = 'sample';
 const actionScheme = 'sample-action';
+
+type ActionUrl = `${typeof actionScheme}://${WebViewCommand}`;
 
 class AppSchemeUtil {
   static goToWebView(url: string) {

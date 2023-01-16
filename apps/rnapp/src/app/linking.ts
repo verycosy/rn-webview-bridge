@@ -3,7 +3,8 @@ import { LinkingOptions } from '@react-navigation/native';
 import { Linking } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import queryString from 'query-string';
-import WebViewActor, { WebViewCommand } from './WebViewActor';
+import { WebViewCommand } from '@rnweb-template/types';
+import WebViewActor from './WebViewActor';
 
 const appScheme = 'sample://';
 const actionScheme = 'sample-action://';

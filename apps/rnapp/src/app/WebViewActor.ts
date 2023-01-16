@@ -1,3 +1,4 @@
+import { WebViewCommand } from '@rnweb-template/types';
 import EventEmitter3 from 'eventemitter3';
 
 const EventKey = {
@@ -22,8 +23,6 @@ class WebViewActor {
 }
 
 export default WebViewActor;
-
-export type WebViewCommand = 'setHeader' | 'refresh' | 'close';
 
 export interface WebViewAction {
   command: WebViewCommand;
