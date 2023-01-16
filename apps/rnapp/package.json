@@ -17,6 +17,8 @@
     "metro-config": "*",
     "react-native-safe-area-context": "*",
     "react-native-screens": "*",
-    "react-native-webview": "*"
+    "react-native-webview": "*",
+    "eventemitter3": "*",
+    "query-string": "*"
   }
 }
