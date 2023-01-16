@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rnweb-template/common": ["libs/common/src/index.ts"]
+      "@rnweb-template/common": ["libs/common/src/index.ts"],
+      "@rnweb-template/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
