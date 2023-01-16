@@ -3,12 +3,19 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@react-native-async-storage/async-storage": "*",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
     "react": "*",
     "react-native": "*",
     "react-native-config": "*",
+    "react-native-gesture-handler": "*",
     "react-native-svg": "*",
-    "@react-native-async-storage/async-storage": "*"
+    "@react-native-masked-view/masked-view": "*",
+    "@react-navigation/native": "*",
+    "@react-navigation/stack": "*",
+    "metro-config": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*"
   }
 }
