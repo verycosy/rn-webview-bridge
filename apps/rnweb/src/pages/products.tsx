@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import AppSchemeUtil from '../utils/AppSchemeUtil';
 
 // literl template으로 command 만들기
 
@@ -12,25 +13,11 @@ const ProductsPage: NextPage = () => {
 
       <div>
         상품목록
-        <button
-          onClick={() => {
-            window.location.href = 'sample-action://setHeader?title=얍얍얍';
-          }}
-        >
+        <button onClick={() => AppSchemeUtil.setHeaderTitle('얍얍얍')}>
           제목 바꾸기 얍
         </button>
-        <button
-          onClick={() => {
-            window.location.href = 'sample-action://close';
-          }}
-        >
-          닫혀라
-        </button>
-        <div
-          onClick={() => {
-            window.location.href = 'sample://sample';
-          }}
-        >
+        <button onClick={() => AppSchemeUtil.closeWebView()}>닫혀라</button>
+        <div onClick={() => AppSchemeUtil.goToScreen('sample')}>
           샘플 스크린으로
         </div>
       </div>

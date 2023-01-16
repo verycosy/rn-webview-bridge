@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import AppSchemeUtil from '../utils/AppSchemeUtil';
 
 declare global {
   interface Window {
@@ -22,12 +23,7 @@ const useRouting = () => {
       if (window.ReactNativeWebView) {
         router.events.emit('routeChangeError');
 
-        const [href, hash] = url.split('#');
-        const title = hash ?? '';
-
-        window.location.href = `sample://webview?url=${encodeURIComponent(
-          window.location.origin + href
-        )}&title=${title}`;
+        AppSchemeUtil.goToWebView(url);
 
         throw '무시해도 되는 에러';
       }
