@@ -10,6 +10,7 @@ const actionScheme = 'sample-action://';
 
 type RootStackParamList = {
   HomeScreen: undefined;
+  SampleScreen: undefined;
   NotFound: undefined;
   WebViewScreen: {
     url?: string;
@@ -34,6 +35,7 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       HomeScreen: '/home',
       WebViewScreen: '/webview/:url?/:title?',
+      SampleScreen: '/sample',
       NotFound: '*',
     },
   },

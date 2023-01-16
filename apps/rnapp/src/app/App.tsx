@@ -6,6 +6,7 @@ import WebViewScreen from './WebViewScreen';
 import linking from './linking';
 import HomeScreen from './HomeScreen';
 import NotFoundScreen from './NotFoundScreen';
+import SampleScreen from './SampleScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ export const App = () => {
             component={WebViewScreen}
             getId={({ params }) => params?.['url']}
           />
+          <Stack.Screen name="SampleScreen" component={SampleScreen} />
           <Stack.Screen name="NotFound" component={NotFoundScreen} />
         </Stack.Navigator>
       </NavigationContainer>

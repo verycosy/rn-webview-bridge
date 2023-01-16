@@ -26,6 +26,13 @@ const ProductsPage: NextPage = () => {
         >
           닫혀라
         </button>
+        <div
+          onClick={() => {
+            window.location.href = 'sample://sample';
+          }}
+        >
+          샘플 스크린으로
+        </div>
       </div>
     </>
   );
