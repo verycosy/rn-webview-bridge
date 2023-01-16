@@ -103,3 +103,6 @@ buck-out/
 
 
 apps/rnapp-e2e/artifacts
+
+# Next.js
+.next
