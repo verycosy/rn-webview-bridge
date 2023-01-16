@@ -2,6 +2,8 @@ import { Logger } from '@rnweb-template/common';
 import { LinkingOptions } from '@react-navigation/native';
 import { Linking } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
+import queryString from 'query-string';
+import WebViewActor, { WebViewCommand } from './WebViewActor';
 
 const appScheme = 'sample://';
 const actionScheme = 'sample-action://';
@@ -49,12 +51,15 @@ const linking: LinkingOptions<RootStackParamList> = {
         return listener(url);
       }
 
-      const action = url.split(actionScheme)[1];
-      switch (action) {
-        case 'refresh': {
-          console.log('REFRESHING');
-          break;
-        }
+      if (url.startsWith(actionScheme)) {
+        const { url: _url, query } = queryString.parseUrl(url);
+
+        const command = _url.split(actionScheme)[1] as WebViewCommand;
+
+        return WebViewActor.emit({
+          command,
+          data: query,
+        });
       }
     };
 

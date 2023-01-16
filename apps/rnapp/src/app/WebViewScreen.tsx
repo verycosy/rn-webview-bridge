@@ -1,9 +1,53 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
+import { useCallback } from 'react';
 import { useLayoutEffect } from 'react';
 import WebView from 'react-native-webview';
+import WebViewActor, { WebViewAction } from './WebViewActor';
 import { RootStackScreenProps } from './linking';
 
+const useWebViewActor = () => {
+  const navigation = useNavigation();
+
+  const actorListener = useCallback(() => {
+    const handler = (action: WebViewAction) => {
+      switch (action.command) {
+        case 'setHeader': {
+          navigation.setOptions({
+            headerTitle: action.data.title,
+          });
+
+          break;
+        }
+
+        case 'close': {
+          navigation.goBack();
+          break;
+        }
+
+        case 'refresh': {
+          // TODO:
+          break;
+        }
+      }
+    };
+
+    WebViewActor.addListener(handler);
+
+    return () => {
+      WebViewActor.removeListener(handler);
+    };
+  }, [navigation]);
+
+  useFocusEffect(actorListener);
+};
+
 const WebViewScreen: React.FC = () => {
+  useWebViewActor();
+
   const navigation = useNavigation();
   const {
     params: { url, title } = {
