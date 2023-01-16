@@ -16,6 +16,7 @@
     "@react-navigation/stack": "*",
     "metro-config": "*",
     "react-native-safe-area-context": "*",
-    "react-native-screens": "*"
+    "react-native-screens": "*",
+    "react-native-webview": "*"
   }
 }
