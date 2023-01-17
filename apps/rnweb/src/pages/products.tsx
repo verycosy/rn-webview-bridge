@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { Bridge } from '../hooks/useBridge';
+import Bridge from '../utils/Bridge';
 import AppSchemeUtil from '../utils/AppSchemeUtil';
 
 // literl template으로 command 만들기
