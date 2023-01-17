@@ -19,6 +19,10 @@ class AppSchemeUtil {
     window.location.href = `${appScheme}://${url}`;
   }
 
+  static share(url: string, title: string, message: string) {
+    window.location.href = `${actionScheme}://share?url=${url}&title=${title}&message=${message}`;
+  }
+
   static setHeaderTitle(title: string) {
     window.location.href = `${actionScheme}://setHeader?title=${title}`;
   }

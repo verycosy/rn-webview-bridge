@@ -8,6 +8,7 @@ import { useLayoutEffect } from 'react';
 import WebView from 'react-native-webview';
 import WebViewActor, { WebViewAction } from './WebViewActor';
 import { RootStackScreenProps } from './linking';
+import { Share } from 'react-native';
 
 const useWebViewActor = () => {
   const navigation = useNavigation();
@@ -25,6 +26,18 @@ const useWebViewActor = () => {
 
         case 'close': {
           navigation.goBack();
+          break;
+        }
+
+        case 'share': {
+          const { url, title, message } = action.data;
+
+          Share.share({
+            url,
+            title,
+            message,
+          });
+
           break;
         }
 

@@ -20,6 +20,13 @@ const ProductsPage: NextPage = () => {
         <div onClick={() => AppSchemeUtil.goToScreen('sample')}>
           샘플 스크린으로
         </div>
+        <div
+          onClick={() =>
+            AppSchemeUtil.share('https://gogogle.com', '구글', '구글이에요')
+          }
+        >
+          공유
+        </div>
       </div>
     </>
   );

@@ -24,7 +24,30 @@ class WebViewActor {
 
 export default WebViewActor;
 
-export interface WebViewAction {
-  command: WebViewCommand;
-  data: Record<string, unknown>;
+interface BaseWebViewAction<T extends WebViewCommand> {
+  command: T;
 }
+
+interface ShareAction extends BaseWebViewAction<'share'> {
+  data: {
+    url: string;
+    title: string;
+    message: string;
+  };
+}
+
+interface SetHeadearAction extends BaseWebViewAction<'setHeader'> {
+  data: {
+    title?: string;
+  };
+}
+
+type CloseAction = BaseWebViewAction<'close'>;
+
+type RefreshAction = BaseWebViewAction<'refresh'>;
+
+export type WebViewAction =
+  | ShareAction
+  | SetHeadearAction
+  | CloseAction
+  | RefreshAction;

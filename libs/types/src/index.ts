@@ -1,1 +1,1 @@
-export type WebViewCommand = 'setHeader' | 'refresh' | 'close';
+export type WebViewCommand = 'setHeader' | 'refresh' | 'close' | 'share';
