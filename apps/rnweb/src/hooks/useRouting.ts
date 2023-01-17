@@ -3,14 +3,6 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import AppSchemeUtil from '../utils/AppSchemeUtil';
 
-declare global {
-  interface Window {
-    ReactNativeWebView?: {
-      postMessage: (data: string) => void;
-    };
-  }
-}
-
 Link.defaultProps = {
   prefetch: false,
 };

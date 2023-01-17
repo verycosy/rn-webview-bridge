@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { Bridge } from '../hooks/useBridge';
 import AppSchemeUtil from '../utils/AppSchemeUtil';
 
 // literl template으로 command 만들기
@@ -26,6 +27,25 @@ const ProductsPage: NextPage = () => {
           }
         >
           공유
+        </div>
+        <div
+          onClick={async () => {
+            const value = await Bridge.getValueFromApp('statusBarHeight');
+            alert(JSON.stringify(value));
+          }}
+        >
+          앱에서 값 가져오기
+        </div>
+        <div
+          onClick={async () => {
+            try {
+              await Bridge.getValueFromApp('throwError');
+            } catch (err) {
+              alert(err.message);
+            }
+          }}
+        >
+          앱에서 값 가져오던 중 에러
         </div>
       </div>
     </>

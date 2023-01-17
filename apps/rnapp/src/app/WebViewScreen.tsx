@@ -3,9 +3,9 @@ import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { useLayoutEffect } from 'react';
-import WebView from 'react-native-webview';
+import WebView, { WebViewProps } from 'react-native-webview';
 import WebViewActor, { WebViewAction } from './WebViewActor';
 import { RootStackScreenProps } from './linking';
 import { Share } from 'react-native';
@@ -61,6 +61,7 @@ const useWebViewActor = () => {
 const WebViewScreen: React.FC = () => {
   useWebViewActor();
 
+  const ref = useRef<WebView>(null);
   const navigation = useNavigation();
   const {
     params: { url, title } = {
@@ -75,11 +76,44 @@ const WebViewScreen: React.FC = () => {
     });
   }, [navigation, title]);
 
+  const onMessage: WebViewProps['onMessage'] = ({ nativeEvent: { data } }) => {
+    const { callbackName, params } = JSON.parse(data);
+
+    const [, key] = callbackName.split('-');
+
+    let callbackData: unknown;
+    let errorMessage: string;
+
+    switch (key) {
+      case 'statusBarHeight': {
+        callbackData = 30;
+        break;
+      }
+
+      case 'throwError': {
+        callbackData = null;
+        errorMessage = '에러 발생함';
+        break;
+      }
+    }
+
+    const script = `
+    window.executeCallback(
+      '${callbackName}', 
+      ${JSON.stringify(callbackData)}, 
+      '${errorMessage}'
+    );`;
+
+    ref.current.injectJavaScript(script);
+  };
+
   return (
     <WebView
       source={{
         uri: url,
       }}
+      ref={ref}
+      onMessage={onMessage}
     />
   );
 };
