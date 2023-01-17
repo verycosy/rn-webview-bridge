@@ -19,7 +19,7 @@ const useBridge = () => {
 
       const { resolve, reject } = callback;
 
-      if (callbackData === null) {
+      if (errorMessage) {
         reject(new Error(errorMessage));
         Logger.error(`Callback ${callbackName} Rejected.`);
       } else {
