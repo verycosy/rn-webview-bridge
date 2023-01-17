@@ -1,3 +1,4 @@
+import { Logger } from '@rnweb-template/common';
 import { useEffect } from 'react';
 
 interface Callback {
@@ -16,6 +17,8 @@ export class Bridge {
         resolve,
         reject,
       };
+
+      Logger.log(`Callback ${callbackName} Added.`);
 
       window.ReactNativeWebView.postMessage(
         JSON.stringify({
@@ -44,9 +47,16 @@ const useBridge = () => {
     ) => {
       const callback = Bridge.getCallback(callbackName);
 
+      if (!callback) {
+        Logger.error(`Can not found Callback ${callbackName}`);
+        return;
+      }
+
       if (callbackData === null) {
+        Logger.log(`Callback ${callbackName} Rejected.`);
         callback.reject(new Error(errorMessage));
       } else {
+        Logger.log(`Callback ${callbackName} Resolved.`);
         callback.resolve(callbackData);
       }
 
